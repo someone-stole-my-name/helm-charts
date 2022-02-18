@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  languagetool:
+  - apiVersion: v2
+    appVersion: "5.6"
+    created: "2022-02-18T18:06:23.034598758Z"
+    description: Open Source proofreading software for English, French, German, Polish, and more than 20 other languages.
+    digest: 7b5d70206e2b8dc90609ae3ede5c8319aece665709610a6aaaff949584c88aaf
+    name: languagetool
+    type: application
+    urls:
+    - https://github.com/someone-stole-my-name/helm-charts/releases/download/languagetool-0.0.1/languagetool-0.0.1.tgz
+    version: 0.0.1
+generated: "2022-02-18T18:06:22.882868874Z"
