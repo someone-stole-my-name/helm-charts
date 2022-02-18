@@ -3,6 +3,29 @@ entries:
   languagetool:
   - apiVersion: v2
     appVersion: "5.6"
+    created: "2022-02-18T20:48:25.725569213Z"
+    description: Open Source proofreading software for English, French, German, Polish, and more than 20 other languages.
+    digest: c1ef95c538821d516262de76f3a1dee59995e946bd361c797a7ac1c5fb4cf38c
+    home: https://languagetool.org/
+    icon: https://upload.wikimedia.org/wikipedia/commons/4/45/LanguageTool_Logo.svg
+    keywords:
+    - natural-language-processing
+    - spellcheck
+    - natural-language
+    - grammar
+    - style-checker
+    - proofreading
+    name: languagetool
+    sources:
+    - https://github.com/someone-stole-my-name/helm-charts
+    - https://github.com/silvio/docker-languagetool
+    - https://github.com/someone-stole-my-name/languagetool-init
+    type: application
+    urls:
+    - https://github.com/someone-stole-my-name/helm-charts/releases/download/languagetool-0.1.1/languagetool-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: "5.6"
     created: "2022-02-18T18:07:19.771367988Z"
     description: Open Source proofreading software for English, French, German, Polish, and more than 20 other languages.
     digest: 606fc036ec2f3a768710c9dd56ca1312072b416d29f51ee8ea1af20bbdc92fa2
