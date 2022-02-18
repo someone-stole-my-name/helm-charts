@@ -16,3 +16,4 @@ keywords:
 sources:
   - https://github.com/someone-stole-my-name/helm-charts
   - https://github.com/silvio/docker-languagetool
+  - https://github.com/someone-stole-my-name/languagetool-init
