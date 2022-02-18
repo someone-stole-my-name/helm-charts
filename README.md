@@ -1,5 +1,5 @@
 # helm-charts
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/someone-stole-my-name)](https://artifacthub.io/packages/search?repo=someone-stole-my-name)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/someone-stole-my-name)](https://artifacthub.io/packages/search?repo=someone-stole-my-name) [![Release](https://github.com/someone-stole-my-name/helm-charts/actions/workflows/blank.yml/badge.svg?branch=main)](https://github.com/someone-stole-my-name/helm-charts/actions/workflows/blank.yml)
 
 ## Usage
 
