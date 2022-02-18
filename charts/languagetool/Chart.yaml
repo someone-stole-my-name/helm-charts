@@ -4,3 +4,15 @@ description: Open Source proofreading software for English, French, German, Poli
 type: application
 version: 0.1.0
 appVersion: "5.6"
+home: https://languagetool.org/
+icon: https://upload.wikimedia.org/wikipedia/commons/4/45/LanguageTool_Logo.svg
+keywords:
+  - natural-language-processing
+  - spellcheck
+  - natural-language
+  - grammar
+  - style-checker
+  - proofreading
+sources:
+  - https://github.com/someone-stole-my-name/helm-charts
+  - https://github.com/silvio/docker-languagetool
