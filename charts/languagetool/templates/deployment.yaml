@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "languagetool.fullname" . }}
+  labels:
+    {{- include "languagetool.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "languagetool.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "languagetool.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- if and .Values.ngram.enabled }}
+      volumes:
+        - name: ngram-storage
+          persistentVolumeClaim:
+            {{- if .Values.ngram.persistence.existingClaim }}
+            claimName: "{{ .Values.ngram.persistence.existingClaim }}"
+            {{- else }}
+            claimName: "{{ .Release.Name }}-ngram-storage"
+            {{- end }}
+      {{- end }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "languagetool.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.ngram.enabled }}
+      initContainers:
+        - name: init-ngram
+          image: alpine:3.6
+          command: [
+            'sh', '-c',
+            "apk update && apk add bash grep curl libarchive-tools && \
+            curl https://raw.githubusercontent.com/someone-stole-my-name/languagetool-init/{{ .Values.ngram.initVersion | default "0.1.1" }}/init.sh |\
+            bash -s \"{{ join "," .Values.ngram.languages }}\" \"/ngram-storage\"",
+          ]
+          securityContext:
+            capabilities:
+              drop: ['all']
+              add: ['MKNOD', 'SYS_CHROOT', 'CHOWN', 'DAC_OVERRIDE', 'FOWNER']
+          volumeMounts:
+            - name: ngram-storage
+              mountPath: /ngram-storage
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          command:
+            - /bin/sh
+          args:
+            - '-c'
+            - >-
+              java -cp languagetool-server.jar
+              org.languagetool.server.HTTPServer --port 8010 --public
+              --allow-origin '*' ${EXTRAOPTIONS}
+          env:
+            - name: EXTRAOPTIONS
+              value: "{{ if .Values.ngram.enabled }}--languageModel /ngram-storage {{ end }}{{ .Values.extraOptions }}"
+          {{- if .Values.ngram.enabled }}
+          volumeMounts:
+            - name: ngram-storage
+              mountPath: /ngram-storage
+          {{- end }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8010
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /v2/info
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /v2/info
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

@@ -1,0 +1,15 @@
+{{- if and (.Values.ngram.enabled) (not .Values.ngram.persistence.existingClaim) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "{{ .Release.Name }}-ngram-storage"
+  labels:
+    {{- include "languagetool.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - "{{ .Values.ngram.persistence.accessMode }}"
+  storageClassName: "{{ .Values.ngram.persistence.storageClass }}"
+  resources:
+    requests:
+      storage: "{{ .Values.ngram.persistence.size }}"
+{{- end }}

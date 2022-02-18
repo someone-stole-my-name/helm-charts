@@ -1,0 +1,6 @@
+apiVersion: v2
+name: languagetool
+description: Open Source proofreading software for English, French, German, Polish, and more than 20 other languages.
+type: application
+version: 0.0.1
+appVersion: "5.6"
