@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: silviof/docker-languagetool
+  repository: ghcr.io/someone-stole-my-name/docker-languagetool
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -32,6 +32,12 @@ securityContext:
   capabilities:
     drop:
     - ALL
+    add: 
+    - MKNOD
+    - SYS_CHROOT
+    - CHOWN
+    - DAC_OVERRIDE
+    - FOWNER
   runAsNonRoot: true
   runAsUser: 65534
 
@@ -80,8 +86,10 @@ tolerations: []
 
 affinity: {}
 
-# eg: -Xmx382M --languageModel /foo
 extraOptions: ""
+
+# eg: -Xmx400M
+javaOptions: ""
 
 # Downloads the specified languages from https://languagetool.org/download/ngram-data/
 # to a local disk and appends "--languageModel ..." to extraOptions. Ideally the storageClass or 

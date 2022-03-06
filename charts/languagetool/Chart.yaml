@@ -2,7 +2,7 @@ apiVersion: v2
 name: languagetool
 description: Open Source proofreading software for English, French, German, Polish, and more than 20 other languages.
 type: application
-version: 0.1.1
+version: 0.1.2
 appVersion: "5.6"
 home: https://languagetool.org/
 icon: https://upload.wikimedia.org/wikipedia/commons/4/45/LanguageTool_Logo.svg
@@ -15,5 +15,4 @@ keywords:
   - proofreading
 sources:
   - https://github.com/someone-stole-my-name/helm-charts
-  - https://github.com/silvio/docker-languagetool
-  - https://github.com/someone-stole-my-name/languagetool-init
+  - https://github.com/someone-stole-my-name/docker-languagetool
