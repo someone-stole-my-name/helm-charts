@@ -28,19 +28,6 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext:
-  capabilities:
-    drop:
-    - ALL
-    add: 
-    - MKNOD
-    - SYS_CHROOT
-    - CHOWN
-    - DAC_OVERRIDE
-    - FOWNER
-  runAsNonRoot: true
-  runAsUser: 65534
-
 service:
   type: ClusterIP
   port: 80
@@ -86,18 +73,21 @@ tolerations: []
 
 affinity: {}
 
+# -- Extra options for languagetool itself.
 extraOptions: ""
 
-# eg: -Xmx400M
+# -- Extra options for JVM.
+# eg: -Xmx3G -Xms3G
 javaOptions: ""
 
+# -- Configure additional probe options.
 probeOptions:
   livenessProbeOptions:
     initialDelaySeconds: 600
   readinessProbeOptions: {}
 
 
-# Downloads the specified languages from https://languagetool.org/download/ngram-data/
+# -- Downloads the specified languages from https://languagetool.org/download/ngram-data/
 # to a local disk and appends "--languageModel ..." to extraOptions. Ideally the storageClass or 
 # existingClaim should be as fast as possible.
 ngram:
@@ -107,5 +97,7 @@ ngram:
     accessMode: ReadWriteMany
     size: 10Gi
     # existingClaim:
+  # -- The list of languages to download.
   languages:
-    - en # > ~16GB as of 02/2022
+    # -- > ~16GB as of 02/2022
+    - en
