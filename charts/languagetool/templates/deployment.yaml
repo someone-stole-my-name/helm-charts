@@ -73,11 +73,16 @@ spec:
             httpGet:
               path: /v2/info
               port: http
-            initialDelaySeconds: 600
+            {{- if .Values.probeOptions.livenessProbeOptions }}
+            {{- toYaml .Values.probeOptions.livenessProbeOptions | nindent 12 }}
+            {{- end }}
           readinessProbe:
             httpGet:
               path: /v2/info
               port: http
+            {{- if .Values.probeOptions.readinessProbeOptions }}
+            {{- toYaml .Values.probeOptions.readinessProbeOptions | nindent 12 }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

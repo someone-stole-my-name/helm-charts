@@ -91,6 +91,12 @@ extraOptions: ""
 # eg: -Xmx400M
 javaOptions: ""
 
+probeOptions:
+  livenessProbeOptions:
+    initialDelaySeconds: 600
+  readinessProbeOptions: {}
+
+
 # Downloads the specified languages from https://languagetool.org/download/ngram-data/
 # to a local disk and appends "--languageModel ..." to extraOptions. Ideally the storageClass or 
 # existingClaim should be as fast as possible.
