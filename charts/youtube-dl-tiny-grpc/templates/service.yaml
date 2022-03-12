@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "youtube-dl-tiny-grpc.fullname" . }}
+  labels:
+    {{- include "youtube-dl-tiny-grpc.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: grpc
+      protocol: TCP
+      name: grpc
+  selector:
+    {{- include "youtube-dl-tiny-grpc.selectorLabels" . | nindent 4 }}
