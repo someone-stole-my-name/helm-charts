@@ -100,4 +100,23 @@ entries:
     urls:
     - https://github.com/someone-stole-my-name/helm-charts/releases/download/languagetool-0.1.0/languagetool-0.1.0.tgz
     version: 0.1.0
+  youtube-dl-tiny-grpc:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-03-12T12:56:10.160969842Z"
+    description: A tiny slice of youtube-dl exposed over gRPC
+    digest: 00e3186a8ed70a8e0c5c99711de598ea2c65f77abcd4c880178d53553a1b8ada
+    home: https://github.com/someone-stole-my-name/youtube-dl-tiny-grpc
+    keywords:
+    - grpc
+    - youtube
+    - youtube-dl
+    name: youtube-dl-tiny-grpc
+    sources:
+    - https://github.com/someone-stole-my-name/helm-charts
+    - https://github.com/someone-stole-my-name/youtube-dl-tiny-grpc
+    type: application
+    urls:
+    - https://github.com/someone-stole-my-name/helm-charts/releases/download/youtube-dl-tiny-grpc-0.1.0/youtube-dl-tiny-grpc-0.1.0.tgz
+    version: 0.1.0
 generated: "2022-02-18T18:07:19.599477052Z"
