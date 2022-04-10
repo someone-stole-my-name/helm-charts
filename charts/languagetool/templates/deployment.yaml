@@ -40,6 +40,10 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           env:
+          {{- if .Values.metrics.enabled }}
+            - name: LT_prometheusMonitoring
+              value: "true"
+          {{- end }}
           {{- if .Values.ngram.enabled }}
             - name: NGRAM_LANGUAGES
               value: "{{ join "," .Values.ngram.languages }}"
