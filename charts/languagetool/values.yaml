@@ -86,8 +86,8 @@ probeOptions:
     initialDelaySeconds: 600
   readinessProbeOptions: {}
 
-# Enable Prometheus endpoint and scrape annotations
 metrics:
+  # -- Enable Prometheus endpoint and scrape annotations
   enabled: false
 
 # -- Downloads the specified languages from https://languagetool.org/download/ngram-data/
