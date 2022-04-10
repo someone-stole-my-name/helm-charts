@@ -79,6 +79,11 @@ spec:
             - name: http
               containerPort: 8010
               protocol: TCP
+          {{- if .Values.metrics.enabled }}
+            - name: metrics
+              containerPort: 9301
+              protocol: TCP
+          {{- end}}
           livenessProbe:
             httpGet:
               path: /v2/info
