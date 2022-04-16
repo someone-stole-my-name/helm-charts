@@ -1,3 +1,4 @@
+---
 # Default values for youtube-dl-tiny-grpc.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -6,7 +7,8 @@ replicaCount: 1
 
 image:
   repository: ghcr.io/someone-stole-my-name/youtube-dl-tiny-grpc
-  pullPolicy: IfNotPresent
+  #pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
@@ -16,7 +18,7 @@ fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  create: false
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
@@ -80,3 +82,13 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+redis:
+  serviceAccount:
+    create: false
+  architecture: standalone
+  auth:
+    enabled: false
+  master:
+    persistence:
+      enabled: false

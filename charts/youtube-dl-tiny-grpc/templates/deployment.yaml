@@ -33,6 +33,17 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["python"]
+          args:
+            - '-m'
+            - 'youtube_dl_tiny_grpc'
+            - '--grpc-port'
+            - '50051'
+            - '--youtube-dl-max-workers'
+            - '2'
+            - '--redis-enable'
+            - '--redis-uri'
+            - 'redis://{{ include "youtube-dl-tiny-grpc.fullname" . }}-redis-master'
           ports:
             - name: grpc
               containerPort: 50051
