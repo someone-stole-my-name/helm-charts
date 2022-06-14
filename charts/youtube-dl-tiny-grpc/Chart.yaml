@@ -4,7 +4,7 @@ name: youtube-dl-tiny-grpc
 description: A tiny slice of youtube-dl exposed over gRPC
 type: application
 version: 0.1.0
-appVersion: "0.3.0"
+appVersion: "0.4.0"
 home: https://github.com/someone-stole-my-name/youtube-dl-tiny-grpc
 keywords:
   - grpc
