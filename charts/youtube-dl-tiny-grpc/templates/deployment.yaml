@@ -33,20 +33,19 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["python"]
-          args:
-            - '-m'
-            - 'youtube_dl_tiny_grpc'
-            - '--grpc-port'
-            - '50051'
-            - '--youtube-dl-max-workers'
-            - '2'
-            - '--redis-enable'
-            - '--redis-uri'
-            - 'redis://{{ include "youtube-dl-tiny-grpc.fullname" . }}-redis-master'
+          env:
+            - name: GRPC_PORT
+              value: 50051
+            {{- range $env := .Values.env }}
+            - name: {{ $env.name }}
+              value: {{ $env.value }}
+            {{- end }}
           ports:
             - name: grpc
               containerPort: 50051
+              protocol: TCP
+            - name: prometheus
+              containerPort: 8080
               protocol: TCP
           # TODO: https://github.com/grpc/grpc/blob/master/doc/health-checking.md
           # TODO: https://kubernetes.io/blog/2018/10/01/health-checking-grpc-servers-on-kubernetes/
