@@ -35,7 +35,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: GRPC_PORT
-              value: 50051
+              value: '50051'
             {{- range $env := .Values.env }}
             - name: {{ $env.name }}
               value: {{ $env.value }}
