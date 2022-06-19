@@ -191,6 +191,24 @@ entries:
   youtube-dl-tiny-grpc:
   - apiVersion: v2
     appVersion: 0.3.2
+    created: "2022-06-19T18:46:39.6957247Z"
+    description: A tiny slice of youtube-dl exposed over gRPC
+    digest: 789514aae80b5bc0637e14f68202fd48028aa6176130ef7d43f3810d2beb77df
+    home: https://github.com/someone-stole-my-name/youtube-dl-tiny-grpc
+    keywords:
+    - grpc
+    - youtube
+    - youtube-dl
+    name: youtube-dl-tiny-grpc
+    sources:
+    - https://github.com/someone-stole-my-name/helm-charts
+    - https://github.com/someone-stole-my-name/youtube-dl-tiny-grpc
+    type: application
+    urls:
+    - https://github.com/someone-stole-my-name/helm-charts/releases/download/youtube-dl-tiny-grpc-0.1.4/youtube-dl-tiny-grpc-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 0.3.2
     created: "2022-06-19T18:30:22.228558329Z"
     description: A tiny slice of youtube-dl exposed over gRPC
     digest: 66d52248793db07e6063320255ad972c9cabb0a753d3fe71dc8e60ed858cac07
