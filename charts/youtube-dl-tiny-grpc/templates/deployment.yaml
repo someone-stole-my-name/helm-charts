@@ -38,7 +38,7 @@ spec:
               value: '50051'
             {{- range $env := .Values.env }}
             - name: {{ $env.name }}
-              value: {{ $env.value }}
+              value: {{ $env.value | quote }}
             {{- end }}
           ports:
             - name: grpc
