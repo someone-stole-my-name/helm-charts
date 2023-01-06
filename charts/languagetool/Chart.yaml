@@ -3,7 +3,7 @@ name: languagetool
 description: Open Source proofreading software for English, French, German, Polish, and more than 20 other languages.
 type: application
 version: 0.1.8
-appVersion: "5.7"
+appVersion: "6.0"
 home: https://languagetool.org/
 icon: https://upload.wikimedia.org/wikipedia/commons/4/45/LanguageTool_Logo.svg
 keywords:
